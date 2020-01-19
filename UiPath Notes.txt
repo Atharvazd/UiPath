@@ -1,6 +1,9 @@
 1. To get name of process: 
 	System.Diagnostics.Process.GetProcessesByName("Chrome")
 
+	To Get total number of processes
+	System.Diagnostics.Process.GetProcessesByName("EXCEL").Count > 0
+
 2. To select specific rows from a Data Table
 	Method 1 - When there is no space in column name 
 		Array_1 = ExtractDataTable.Select("Type = 'WI5' and Status = 'Open'")
@@ -370,5 +373,44 @@ DataRow rows = DataTable.Select("[COLUMN 1]='' OR [COLUMN 2]=''");
 			Pages - "1-2" (For Range of Pages. "1" for a single page. )
 
 	If you want advanced control then write a python script for it.
+
+78. How to connect to PostGres SQL - 
+		https://forum.uipath.com/t/postgresql-with-uipath-how-to/83545
+
+79. Use Project Settings to apply project level rules for common activities such as what should be BeforeDelay and AfterDelay of the activities and all.	
+	You can also use the same for copying settings from production to debug or the other way around.
+
+80. Use Run From this activity option to run from a particular activity. It also gives you a chance to modify variables before running.
+
+81. Conditional Breakpoints - In breakpoints tab, double click on any BP and add in the condition.
+
+82. In orchestrator we now have auto start process option in the Processes tab. This can be accessed via the drop down menu on each individual process.
+
+83. Background Process: It allows us to create a background process (with no foreground interaction) and allows us to run multiple such processes on a single machine.
+
+84. By checking Hidden Property in Open Browser you can open a hidden chrome/firefox which is basically a background process
+
+85. Selector Matching via REGEX
+	Syntax :
+	a. Just replace the value via regex expression
+	b. Add matching:identifier_name='regex' at the end of the selector.
+
+	Example :
+		<html app='chrome.exe' title='Google' />
+		<webctrl tag='INPUT' aaname='^Google Sear\w\w' matching:aaname='regex' idx='2' />
+
+86. Fuzzy matching for selectors. If selector is not consistent and changes only a little bit always then we can use Fuzzy Matching.
+	Syntax :
+	Just add this at the end of the selector:
+		matching:title='fuzzy' fuzzylevel:title='0.9'
+
+	Example :
+		<html app='chrome.exe' title='Google' />
+		<webctrl name='btnK' tag='INPUT' aaname='Google Searfh' matching:aaname='fuzzy' fuzzylevel:aaname='0.9' />
+
+87. Non Greedy Selectors - Suppose you have 2 windows with similar selectors. Now sometimes UiPath will take incorrect instance at the place of the correct one.
+		To solve it just add the below at the end of the selectors.
+				
+				idx = '*' 
 
 
